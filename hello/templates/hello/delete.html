@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+<body class="container">
+    <h1 class="display-4 text-primary">{{title}}</h1>
+    <p>※以下のレコードを削除します。</p>
+    <table class="table">
+        <tr>
+            <th><td>ID</td></th>
+            <td>{{obj.id}}</td>
+        </tr>
+        <tr>
+            <th><td>Name</td></th>
+            <td>{{obj.name}}</td>
+        </tr>
+        <tr>
+            <th><td>Gender</td></th>
+            <td>
+            {% if obj.gender == False %}male{% endif %}
+            {% if obj.gender == True %}female{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th><td>Email</td></th>
+            <td>{{obj.email}}</td>
+        </tr>
+        <tr>
+            <th><td>Age</td></th>
+            <td>{{obj.age}}</td>
+        </tr>
+        <tr>
+            <th><td>Birth</td></th>
+            <td>{{obj.birthday}}</td>
+        </tr>
+        <form action="{% url 'delete' id %}" method="POST">
+            {% csrf_token %}
+            <tr><th><td>
+                <input type="submit" value="click" class="btn btn-primary mt-2">
+            </td></th></tr>
+        </form>
+    </table>
+</body>
+</html>
